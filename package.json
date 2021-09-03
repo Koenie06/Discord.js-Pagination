@@ -1,0 +1,30 @@
+{
+  "name": "@koenie06/discord.js-pagination",
+  "version": "1.0.0",
+  "description": "A customizable discord.js package to easily make a Button Pagination.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Koenie06/Discord.js-Pagination.git"
+  },
+  "keywords": [
+    "discord.js",
+    "discord",
+    "paginator",
+    "pagination",
+    "buttons",
+    "discord-pagination"
+  ],
+  "author": "Koenie06",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Koenie06/Discord.js-Pagination/issues"
+  },
+  "homepage": "https://github.com/Koenie06/Discord.js-Pagination#readme",
+  "dependencies": {
+    "discord.js": "^13.1.0"
+  }
+}
