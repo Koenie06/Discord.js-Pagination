@@ -28,7 +28,7 @@ $ npm install @koenie06/discord.js-pagination
 ```js
 /* Import all the general stuff, you can't do anything without it.. */
 const { Client, Intents, MessageEmbed } = require('discord.js');
-const pagination = require('@koenie06/discord.js-pagination');
+const paginator = require('@koenie06/discord.js-pagination');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
 
 /* This code will run when the client receives a interaction */
@@ -50,7 +50,7 @@ client.on('interactionCreate', async (interaction) => {
             const page2 = new MessageEmbed().setTitle('This is page 2')
             const page3 = new MessageEmbed().setTitle('This is page 3')
 
-            pagination({
+            paginator.pagination({
                 interaction: interaction,
                 pages: [page1, page2, page3],
                 buttons: {
