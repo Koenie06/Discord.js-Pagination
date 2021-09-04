@@ -1,9 +1,9 @@
 const { MessageButton, MessageActionRow } = require('discord.js');
 
-module.exports = async( { interaction, pages, buttons, timeout } = {} ) => {
+exports.pagination = async(options = {}) => {
 
     // Checks
-
+    let { interaction, pages, buttons, timeout } = options
     if(!interaction || !interaction?.type || interaction?.type !== 'APPLICATION_COMMAND') throw new Error(`INVALID_INTERACTION: There is no valid CommandInteraction provided.`);
     if(!pages || !(pages instanceof Array) || pages?.length <= 1) throw new Error(`INVALID_PAGES: There is no valid pages Array provided, or the Array's length is 0 / 1.`);
     if(!timeout || !Number.isInteger(timeout)) timeout = 60000
@@ -29,7 +29,7 @@ module.exports = async( { interaction, pages, buttons, timeout } = {} ) => {
     .setEmoji(buttons?.stop?.emoji ? buttons?.stop?.emoji : '⛔');
 
     const row = new MessageActionRow()
-    .addComponents([previousButton, nextButton, stopButton]);
+    .addComponents(previousButton, nextButton, stopButton);
 
     // Starting the paginator
 
@@ -80,13 +80,13 @@ module.exports = async( { interaction, pages, buttons, timeout } = {} ) => {
     });
 
     // When the time is up, remove the components
-
+    //No dont. Disable them like the government does 
     collector.on('end', async () => {
 
         if(stopped === true) return;
 
         await pages[currentPage].setFooter(`Page ${currentPage + 1}/${pages.length}`);
-        await interaction.editReply({ embeds: [pages[currentPage]], components: [] });
+        await interaction.editReply({ embeds: [pages[currentPage]], components: [row.components[0].setDisabled(true), row.components[1].setDisabled(true), row.components[2].setDisabled(true)] });
     
     });
 
