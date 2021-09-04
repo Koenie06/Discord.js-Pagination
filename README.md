@@ -133,12 +133,12 @@ client.login('Client token from https://discord.com/developers/applications')
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------|
 | interaction      | The interaction you've received from the interactionCreate event.                                                                 | [Interaction](https://discord.js.org/#/docs/main/stable/class/Interaction)                         |
 | pages            | A array with all the MessageEmbed's                                                                                               | [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)    |
-| buttons / emojis | A object with the [buttons / emojis options](https://www.npmjs.com/package/@koenie06/discord.js-pagination#➕-Extra-Options) in it | [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)  |
+| buttons / emojis | A object with the [buttons / emojis options](https://www.npmjs.com/package/@koenie06/discord.js-pagination#extra-options) in it | [Object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)  |
 | timeout          | The time is milliseconds until the collector stops                                                                                | [Integer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number) |
 
 
 
-# ➕ Extra Options
+<h1 id="extra-options">➕ Extra Options</h1>
 
 ## 🖱️ Buttons
 
