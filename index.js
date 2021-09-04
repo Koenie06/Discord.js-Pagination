@@ -29,7 +29,7 @@ exports.pagination = async(options = {}) => {
     .setEmoji(buttons?.stop?.emoji ? buttons?.stop?.emoji : '⛔');
 
     const row = new MessageActionRow()
-    .addComponents([previousButton, nextButton, stopButton]);
+    .addComponents(previousButton, nextButton, stopButton);
 
     // Starting the paginator
 
@@ -86,7 +86,7 @@ exports.pagination = async(options = {}) => {
         if(stopped === true) return;
 
         await pages[currentPage].setFooter(`Page ${currentPage + 1}/${pages.length}`);
-        await interaction.editReply({ embeds: [pages[currentPage]], components: [] });
+        await interaction.editReply({ embeds: [pages[currentPage]], components: [row.components[0].setDisabled(true), row.components[1].setDisabled(true), row.components[2].setDisabled(true)] });
     
     });
 
