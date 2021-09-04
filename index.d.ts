@@ -5,7 +5,7 @@ import {
 	MessageButtonStyleResolvable,
 } from 'discord.js';
 
-interface paginationOptions {
+interface buttonOptions {
 	interaction: Interaction | CommandInteraction;
 	pages: MessageEmbed[];
 	buttons: {
@@ -28,6 +28,18 @@ interface paginationOptions {
 	timeout: number;
 }
 
+interface emojiButtons {
+	interaction: Interaction | CommandInteraction;
+	pages: MessageEmbed[];
+	emojis: {
+		previous: string;
+		next: string;
+		stop: string;
+	};
+	timeout: number;
+}
+
 declare module '@koenie06/discord.js-pagination' {
-	declare function pagination(params: type): Promise<void>;
+	declare function button(params: buttonOptions): Promise<void>;
+	declare function emoji(params: emojiButtons): Promise<void>;
 }
