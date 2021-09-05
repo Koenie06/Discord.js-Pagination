@@ -38,8 +38,20 @@ interface emojiButtons {
 	};
 	timeout: number;
 }
+interface menuPages {
+	value: string;
+	embed: MessageEmbed;
+	label: string;
+	description?: string;
+	emoji?: string | Snowflake;
+};
 
+interface pagesOptions {
+	placeHolder: string;
+}
 declare module '@koenie06/discord.js-pagination' {
 	declare function button(params: buttonOptions): Promise<void>;
 	declare function emoji(params: emojiButtons): Promise<void>;
+	export function menuPages(message: Message, pages: menuPages[], timeout: number, menuOptions): Promise<void>;
+
 }
