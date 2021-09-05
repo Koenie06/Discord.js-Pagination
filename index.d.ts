@@ -9,36 +9,37 @@ import {
 interface buttonOptions {
 	interaction: Interaction | CommandInteraction;
 	pages: MessageEmbed[];
-	buttons: {
-		previous: {
-			label: string;
-			style: MessageButtonStyleResolvable;
-			emoji: string | Snowflake;
+	buttons?: {
+		previous?: {
+			label?: string;
+			style?: MessageButtonStyleResolvable;
+			emoji?: string | Snowflake;
 		};
-		next: {
-			label: string;
-			style: MessageButtonStyleResolvable;
-			emoji: string | Snowflake;
+		next?: {
+			label?: string;
+			style?: MessageButtonStyleResolvable;
+			emoji?: string | Snowflake;
 		};
-		stop: {
-			label: string;
-			style: MessageButtonStyleResolvable;
-			emoji: string | Snowflake;
+		stop?: {
+			label?: string;
+			style?: MessageButtonStyleResolvable;
+			emoji?: string | Snowflake;
 		};
 	};
-	timeout: number;
+	timeout?: number;
 }
 
-interface emojiButtons {
+interface emojiOptions {
 	interaction: Interaction | CommandInteraction;
 	pages: MessageEmbed[];
-	emojis: {
-		previous: string;
-		next: string;
-		stop: string;
+	emojis?: {
+		previous?: string;
+		next?: string;
+		stop?: string;
 	};
-	timeout: number;
+	timeout?: number;
 }
+
 interface menuPages {
 	value: string;
 	embed: MessageEmbed;
@@ -47,8 +48,17 @@ interface menuPages {
 	emoji?: string | Snowflake;
 }
 
+interface menuOptions {
+	interaction: Interaction | CommandInteraction;
+	menus: {
+		pages: menuPages[],
+		placeHolder?: string;
+	};
+	timeout?: number;	
+}
+
 declare module '@koenie06/discord.js-pagination' {
 	declare function button(params: buttonOptions): Promise<void>;
-	declare function emoji(params: emojiButtons): Promise<void>;
-	export function menuPages(message: Message, pages: menuPages[], timeout: number, placeHolder?: string): Promise<void>;
+	declare function emoji(params: emojiOptions): Promise<void>;
+	declare function menu(params: menuOptions): Promise<void>;
 }

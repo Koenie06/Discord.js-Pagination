@@ -1,4 +1,4 @@
-const { MessageButton, MessageActionRow, Message, MessageSelectMenu } = require('discord.js');
+const { MessageButton, MessageActionRow, MessageSelectMenu, CommandInteraction, Interaction } = require('discord.js');
 exports.button = async (options = {}) => {
 
     // Checks
@@ -96,7 +96,6 @@ exports.emoji = async (options = {}) => {
     // Checks
 
     let { interaction, pages, emojis, timeout } = options;
-    return console.log(interaction, pages, emojis, timeout)
     if (!interaction || !interaction?.type || interaction?.type !== 'APPLICATION_COMMAND') throw new Error(`INVALID_INTERACTION: There is no valid CommandInteraction provided.`);
     if (!pages || !(pages instanceof Array) || pages?.length <= 1) throw new Error(`INVALID_PAGES: There is no valid pages Array provided, or the Array's length is 0 / 1.`);
     if (!timeout || !Number.isInteger(timeout)) timeout = 60000;
@@ -152,35 +151,47 @@ exports.emoji = async (options = {}) => {
     });
 };
 
-exports.menuPages = async (/** @type {Message} */ message, pages, timeout, placeHolder) => {
+exports.menu = async (options = {}) => {
+
+    let { interaction, menus, timeout } = options;
+    let { pages, placeHolder } = menus
+
+    if (!interaction || !interaction?.type || interaction?.type !== 'APPLICATION_COMMAND') throw new Error(`INVALID_INTERACTION: There is no valid CommandInteraction provided.`);
+    if (!pages || !(pages instanceof Array) || pages?.length <= 1) throw new Error(`INVALID_PAGES: There is no valid pages Array provided, or the Array's length is 0 / 1.`);
+    if (!timeout || !Number.isInteger(timeout)) timeout = 60000;
 
     const Menu = new MessageSelectMenu()
         .setCustomId("sel_menu_pages")
         .setPlaceholder((placeHolder) ? placeHolder : "Select something!")
         .addOptions(pages);
 
-    const msg = await message.channel.send({ embeds: [pages[0].embed], components: [new MessageActionRow().addComponents(Menu)] }).catch(() => {})
-    if(!msg) {
-        throw new Error("Sent message was deleted or not sent, or there were duplicate values on some embed pages. No possibility to collect.");
-    }
-    const col = message.channel.createMessageComponentCollector({ componentType: "SELECT_MENU", filter: (int) => int.user.id === message.author.id, dispose: true, time: timeout, idle: timeout / 2 });
-    col.on("collect", async (int) => {
-        if (int.isSelectMenu()) {
-            for await (const value of int.values) {
-                for (const page of pages) {
-                    if (page.value === value) {
-                        await int.deferUpdate().catch(() => { });
-                        await msg.edit({ embeds: [page.embed] });
-                        return;
-                    } else {
-                        continue;
-                    }
-                }
-            }
-        }
+    await interaction.reply({ embeds: [pages[0].embed], components: [new MessageActionRow().addComponents(Menu)] });
+    const msg = await interaction.fetchReply();
+
+    const filter = m => m;
+    // @ts-ignore
+    const collector = await msg.createMessageComponentCollector({ filter, time: timeout });
+
+    collector.on("collect", async (component) => {
+
+        for await (const value of component.values) {
+            for (const page of pages) {
+                if (page.value === value) {
+                    await component.deferUpdate()
+                    await interaction.editReply({ embeds: [page.embed] });
+                    return;
+                } else {
+                    continue;
+                };
+            };
+        };
     });
-    col.once("end", async () => {
+
+    collector.once("end", async () => {
+
         const disabledActionrow = new MessageActionRow().addComponents(Menu.setDisabled(true));
-        await msg.edit({ embeds: [pages[0].embed], components: [disabledActionrow] }).catch(() => { });
+        await interaction.editReply({ embeds: [pages[0].embed], components: [disabledActionrow] });
+
     });
+
 };
