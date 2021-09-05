@@ -155,3 +155,10 @@ client.login('Client token from https://discord.com/developers/applications')
 | previous  | The '◀' reaction | [Snowflake](https://discord.js.org/#/docs/main/stable/typedef/Snowflake) |
 | next      | The '▶' reaction | [Snowflake](https://discord.js.org/#/docs/main/stable/typedef/Snowflake) |
 | stop      | The '⛔' reaction | [Snowflake](https://discord.js.org/#/docs/main/stable/typedef/Snowflake) |
+
+# ❤ Credits
+
+- RaZegame (RaZe#2841) for adding TS support.
+- Iliannnn (Ilian#6635) for finetuning the README.
+
+- Koenie06 (Koenie06#9999) for making the package. 🤫
