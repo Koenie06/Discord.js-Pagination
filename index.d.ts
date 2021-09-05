@@ -3,6 +3,7 @@ import {
 	Interaction,
 	MessageEmbed,
 	MessageButtonStyleResolvable,
+	Message,
 } from 'discord.js';
 
 interface buttonOptions {
@@ -12,17 +13,17 @@ interface buttonOptions {
 		previous: {
 			label: string;
 			style: MessageButtonStyleResolvable;
-			emoji: Snowflake;
+			emoji: string | Snowflake;
 		};
 		next: {
 			label: string;
 			style: MessageButtonStyleResolvable;
-			emoji: Snowflake;
+			emoji: string | Snowflake;
 		};
 		stop: {
 			label: string;
 			style: MessageButtonStyleResolvable;
-			emoji: Snowflake;
+			emoji: string | Snowflake;
 		};
 	};
 	timeout: number;
@@ -38,8 +39,16 @@ interface emojiButtons {
 	};
 	timeout: number;
 }
+interface menuPages {
+	value: string;
+	embed: MessageEmbed;
+	label: string;
+	description?: string;
+	emoji?: string | Snowflake;
+}
 
 declare module '@koenie06/discord.js-pagination' {
 	declare function button(params: buttonOptions): Promise<void>;
 	declare function emoji(params: emojiButtons): Promise<void>;
+	export function menuPages(message: Message, pages: menuPages[], timeout: number, placeHolder?: string): Promise<void>;
 }

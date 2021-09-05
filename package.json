@@ -1,11 +1,12 @@
 {
   "name": "@koenie06/discord.js-pagination",
-  "version": "2.0.1",
+  "version": "2.1.1",
   "description": "A customizable discord.js package to easily make a Button/Emoji Pagination.",
   "main": "index.js",
   "types": "./index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    
+    "test": "node ./exampleBot/index"
   },
   "repository": {
     "type": "git",
