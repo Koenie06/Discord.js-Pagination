@@ -5,7 +5,7 @@ Do you need help? Contact the owner at Discord! Koenie06#9999
 
 <div  align="center">
 <p>
-<a  href="https://nodei.co/npm/@koenie06/discord-pagination"><img  src="https://nodei.co/npm/@koenie06/discord-pagination.png?downloads=true&stars=true"  alt="NPM info"  /></a>
+<a  href="https://nodei.co/npm/@koenie06/discord.js-pagination"><img  src="https://nodei.co/npm/@koenie06/discord.js-pagination.png?downloads=true&stars=true"  alt="NPM info"  /></a>
 
 </p>
 </div>
