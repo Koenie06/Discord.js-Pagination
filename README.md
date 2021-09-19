@@ -7,8 +7,8 @@
 
 # ❔ Discord.js-Pagination
 
-For those who don't know what this is.. This is a NPM package to easily make your own (discord.js) embed paginator.
-There are 3 ways to use this package: A Button, Emoji and Select Menu paginator. Each have there own customization.
+For those who don't know what this is.. This is a NPM package to easily make your own (discord.js) embed paginator. <br>
+There are 3 ways to use this package: A Button, Emoji and Select Menu paginator. Each have there own customization. <br>
 [More Info!](https://npmjs.com/package/@koenie06/discord.js-pagination)
 
 # 🤖 Example Bot
