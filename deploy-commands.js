@@ -10,7 +10,9 @@ const fs = require('fs');
 const commands = [];
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-const guildId = '876543210987654321';
+/* Pass in the guild ID of the guild you want to push the commands to. */
+
+const guildId = '12345678910';
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);

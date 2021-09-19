@@ -1,4 +1,4 @@
 {
-    "token": "",
-    "clientId": ""
+    "token": "Token from https://discord.com/developers",
+    "clientId": "Client ID from https://discord.com/developers"
 }

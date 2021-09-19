@@ -17,6 +17,12 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
+/* This code will run when the client has been logged in. */
+
+client.on('ready', async() => {
+	console.log('I am online!');
+});
+
 /* This code will run when the client has received a Interaction. */
 
 client.on('interactionCreate', async interaction => {
@@ -36,8 +42,8 @@ client.on('interactionCreate', async interaction => {
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
-	}
+	};
 });
 
 /* Logging the client in */
-client.login(token)
+client.login(token);
